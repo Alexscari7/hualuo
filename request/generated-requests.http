@@ -1,0 +1,91 @@
+### 验证微信请求
+GET http://localhost:8088/wx?signature=1&timestamp=1&nonce=1&echostr=2
+
+<> 2021-03-18T051132.200.txt
+
+### 基础发送消息
+POST http://localhost:8088/wx
+Content-Type: application/xml
+
+<xml><URL><![CDATA[http://3629a621c656.ngrok.io/wx]]></URL><ToUserName><![CDATA[hualuo]]></ToUserName><FromUserName><![CDATA[alex]]></FromUserName><CreateTime>123</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[这是一条测试文本消息]]></Content><MsgId>1233456</MsgId></xml>
+
+<> 2021-03-17T112759.200.xml
+<> 2021-03-17T111127.200.xml
+<> 2021-03-17T110917.200.xml
+<> 2021-03-17T110410.200.xml
+<> 2021-03-17T105713.200.xml
+<> 2021-03-16T071530.200.xml
+<> 2021-03-16T070849.200.xml
+
+
+### 设置行业类型
+GET http://localhost:8088/wx/industry/set?industry_id1=1&industry_id2=7
+
+<> 2021-03-17T035408.500.json
+<> 2021-03-17T035136.500.json
+<> 2021-03-17T035019.500.json
+<> 2021-03-17T034904.500.json
+
+### 获取行业类型
+GET http://localhost:8088/wx/industry/get
+
+<> 2021-03-17T032857.200.txt
+
+### 从公众号所属行业模板库中选择模板添加
+GET http://localhost:8088/wx/template/add?template_id_short=TM00015
+
+### 获取公众号下所有模板的详细信息
+GET http://localhost:8088/wx/template/getAll
+
+<> 2021-03-29T055946.200.json
+<> 2021-03-29T025249.200.json
+<> 2021-03-18T102443.200.json
+<> 2021-03-18T101619.200.json
+<> 2021-03-17T053804.200.json
+
+### 删除公众号下的模板
+GET http://localhost:8088/wx/template/delete?template_id=VylSOvOJBPjlKQZsR40gOIgI2RwWAVvkFW7qIrJRfFY
+
+<> 2021-03-18T102519.200.json
+<> 2021-03-18T102029.500.json
+
+
+### 发送消息
+GET http://localhost:8088/wx/template/sendMsg?open_id=o-4p35vo1DyGGaUty61qgIx1gynQ&template_id=IivZbboQB2Ex4MFlY-hqCXQfrv1VvF73uSuL2yPjtsA
+
+<> 2021-03-30T101629.200.json
+<> 2021-03-19T110826.200.json
+
+### 方案1 后端地址，不确定内穿能不能直接通过url访问
+GET http://7893cd954a49.ngrok.io/wx/auth/back
+
+###
+GET http://localhost:8088/wx/auth/back
+
+<> 2021-03-26T055110.404.json
+<> 2021-03-18T062141.200.html
+
+### 获取用户信息
+GET http://localhost:8088/wx/auth/getOpenId?code=081GTTFa1uhRJA0Dr7Ga1mMfYw0GTTFK
+
+<> 2021-03-29T045840.500.json
+<> 2021-03-26T055638.500.json
+<> 2021-03-26T055421.500.json
+<> 2021-03-26T055234.500.json
+<> 2021-03-26T055116.500.json
+<> 2021-03-26T055028.500.json
+
+### 模拟获取用户信息
+GET http://127.0.0.1:8088/wx/auth/getOpenIdMock?code=mockcode
+
+<> 2021-03-23T115522.200.json
+
+### 获取微信服务器api的解析地址，即开发者调用微信的接入IP
+GET http://localhost:8088/wx/getaddr
+
+<> 2021-03-29T045854.200.json
+<> 2021-03-29T045801.500.json
+<> 2021-03-23T013838.200.json
+<> 2021-03-23T103521.200.json
+<> 2021-03-23T102446.200.json
+<> 2021-03-23T102238.500.json
