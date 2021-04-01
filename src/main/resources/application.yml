@@ -8,14 +8,15 @@ logging:
     me.chanjar.weixin: debug
 wx:
   mp:
-    config:
-      #appId: wx826ea8ed015896eb
-      appId: wx59ce58f19562f86a
-      #secret: 14b79838abcc2426261a2eaa005d3f64
-      secret: 819bfafc29c0ba1e56782f332ba0302c
-      token: alex123
-      aesKey: salt123
-      redisEnabled: true
+    #appId: wx826ea8ed015896eb
+    appId: wx59ce58f19562f86a
+    #secret: 14b79838abcc2426261a2eaa005d3f64
+    secret: 819bfafc29c0ba1e56782f332ba0302c
+    token: alex123
+    aesKey: salt123
+    config-storage:
+      type: RedisTemplate
+      key-prefix: wx
 
 spring:
   redis:

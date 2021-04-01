@@ -10,12 +10,12 @@ import com.alex.wx.hualuo.handler.route.ScanHandler;
 import com.alex.wx.hualuo.handler.route.StoreCheckNotifyHandler;
 import com.alex.wx.hualuo.handler.route.SubscribeHandler;
 import com.alex.wx.hualuo.handler.route.UnsubscribeHandler;
+import com.binarywang.spring.starter.wxjava.mp.properties.WxMpProperties;
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.redis.RedisTemplateWxRedisOps;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
-import me.chanjar.weixin.mp.config.WxMpHostConfig;
 import me.chanjar.weixin.mp.config.impl.WxMpDefaultConfigImpl;
 import me.chanjar.weixin.mp.config.impl.WxMpRedisConfigImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,6 @@ import static me.chanjar.weixin.mp.constant.WxMpEventConstants.POI_CHECK_NOTIFY;
  * @create 2021/03/16 18:25
  */
 @Configuration
-@EnableConfigurationProperties({WxMpProperties.class})
 public class WxMpConfiguration {
 
     @Autowired
@@ -65,26 +64,6 @@ public class WxMpConfiguration {
     private SubscribeHandler subscribeHandler;
     @Autowired
     private ScanHandler scanHandler;
-
-    @Bean
-    public WxMpService wxMpService() {
-        WxMpDefaultConfigImpl configStorage;
-        if (wxMpProperties.isRedisEnabled()) {
-            StringRedisTemplate redisTemplate = applicationContext.getBean(StringRedisTemplate.class);
-            configStorage = new WxMpRedisConfigImpl(new RedisTemplateWxRedisOps(redisTemplate),
-                    wxMpProperties.getAppId());
-        } else {
-            configStorage = new WxMpDefaultConfigImpl();
-        }
-        configStorage.setAppId(wxMpProperties.getAppId());
-        configStorage.setSecret(wxMpProperties.getSecret());
-        configStorage.setToken(wxMpProperties.getToken());
-        configStorage.setAesKey(wxMpProperties.getAesKey());
-        //configStorage.setHostConfig(new WxMpHostConfig("http://127.0.0.1:443", null, null));
-        WxMpService wxService = new WxMpServiceImpl();
-        wxService.setWxMpConfigStorage(configStorage);
-        return wxService;
-    }
 
     @Bean
     public WxMpMessageRouter messageRouter(WxMpService wxMpService) {
